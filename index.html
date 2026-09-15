@@ -228,9 +228,108 @@
   footer .foot-inner{ padding:44px 26px 36px; }
   footer .serif{ font-size:1.5rem; color:var(--cream); margin-bottom:8px; }
   footer p{ opacity:.7; font-size:.82rem; margin:4px 0 0; }
+  /* ---------- ENVELOPE INTRO ---------- */
+  #envelopeOverlay{
+    position:fixed; inset:0; z-index:9999;
+    background:var(--maroon);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    cursor:pointer; user-select:none;
+    transition:opacity .6s ease;
+  }
+  #envelopeOverlay.fade-out{ opacity:0; pointer-events:none; }
+  .envelope{
+    position:relative; width:min(78vw,300px); aspect-ratio:3/2;
+    perspective:1000px;
+  }
+  .env-body{
+    position:absolute; inset:0;
+    background:linear-gradient(160deg, var(--gold-pale) 0%, var(--gold) 100%);
+    border:2px solid var(--gold-deep);
+  }
+  .env-side{
+    position:absolute; inset:0;
+    clip-path:polygon(0 0, 50% 42%, 100% 0, 100% 100%, 0 100%);
+    background:linear-gradient(160deg, #EBD293 0%, #CFA53E 100%);
+  }
+  .env-letter{
+    position:absolute; left:8%; right:8%; top:14%; height:72%;
+    background:var(--cream);
+    border:1px solid var(--gold-deep);
+    box-shadow:0 6px 18px rgba(0,0,0,.25);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond'; font-weight:600; color:var(--maroon-deep);
+    font-size:1.4rem; letter-spacing:.04em;
+    transform:translateY(6%); z-index:1;
+    transition:transform .8s cubic-bezier(.2,.8,.3,1);
+  }
+  .env-flap{
+    position:absolute; top:0; left:0; width:100%; height:52%;
+    background:linear-gradient(200deg, var(--maroon) 0%, var(--maroon-deep) 100%);
+    clip-path:polygon(0 0, 100% 0, 50% 100%);
+    transform-origin:top center;
+    transition:transform .8s cubic-bezier(.4,0,.2,1);
+    z-index:2;
+    border-bottom:1px solid var(--gold-deep);
+  }
+  .env-seal{
+    position:absolute; left:50%; top:38%; transform:translate(-50%,-50%);
+    width:52px; height:52px;
+    border-radius:46% 54% 52% 48% / 52% 46% 54% 48%;
+    background:
+      radial-gradient(circle at 32% 28%, rgba(255,255,255,.12), transparent 40%),
+      radial-gradient(circle at 68% 74%, rgba(0,0,0,.35), transparent 55%),
+      radial-gradient(circle at 40% 35%, #8C2233 0%, #6B1524 55%, #4A0E19 100%);
+    box-shadow:
+      inset 0 2px 3px rgba(255,255,255,.15),
+      inset 0 -3px 5px rgba(0,0,0,.45),
+      0 3px 6px rgba(0,0,0,.4);
+    display:flex; align-items:center; justify-content:center;
+    z-index:3;
+    transition:opacity .3s ease;
+  }
+  .env-seal svg{ width:60%; height:60%; opacity:.85; filter:drop-shadow(0 1px 0 rgba(0,0,0,.3)); }
+  .env-hint{
+    margin-top:26px; color:var(--gold-pale); font-family:'Cormorant Garamond'; font-style:italic; font-size:1.05rem;
+    opacity:.9;
+  }
+  #envelopeOverlay.opened .env-flap{ transform:rotateX(180deg); }
+  #envelopeOverlay.opened .env-seal{ opacity:0; }
+  #envelopeOverlay.opened .env-letter{ transform:translateY(-38%); }
+  @media (prefers-reduced-motion: reduce){
+    #envelopeOverlay{ display:none; }
+  }
 </style>
 </head>
 <body>
+
+
+<div id="envelopeOverlay">
+  <div class="envelope">
+    <div class="env-body"></div>
+    <div class="env-letter">S &amp; R</div>
+    <div class="env-side"></div>
+    <div class="env-flap"></div>
+    <div class="env-seal">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="17" fill="none" stroke="#D9B15C" stroke-width="1"/>
+        <g fill="#D9B15C">
+          <path d="M20 6c3 5 5 7 0 11-5-4-3-6 0-11Z"/>
+          <path d="M20 34c3-5 5-7 0-11-5 4-3 6 0 11Z"/>
+          <path d="M6 20c5-3 7-5 11 0-4 5-6 3-11 0Z"/>
+          <path d="M34 20c-5-3-7-5-11 0 4 5 6 3 11 0Z"/>
+          <path d="M10.5 10.5c5.5 1 7.5 2 6 8-6-1-7-3-6-8Z"/>
+          <path d="M29.5 29.5c-5.5-1-7.5-2-6-8 6 1 7 3 6 8Z"/>
+          <path d="M29.5 10.5c-1 5.5-2 7.5-8 6 1-6 3-7 8-6Z"/>
+          <path d="M10.5 29.5c1-5.5 2-7.5 8-6-1 6-3 7-8 6Z"/>
+        </g>
+        <circle cx="20" cy="20" r="4.5" fill="none" stroke="#D9B15C" stroke-width="1"/>
+        <circle cx="20" cy="20" r="1.6" fill="#D9B15C"/>
+      </svg>
+    </div>
+  </div>
+  <p class="env-hint">Tap to open your invitation</p>
+</div>
+
 
 <nav>
   <div class="wrap">
@@ -541,6 +640,22 @@
     confirmBox.classList.remove('show');
     form.style.display = 'block';
   });
+</script>
+
+<script>
+  var envelopeOverlay = document.getElementById('envelopeOverlay');
+  if (envelopeOverlay) {
+    envelopeOverlay.addEventListener('click', function handleOpen(){
+      if (envelopeOverlay.classList.contains('opened')) return;
+      envelopeOverlay.classList.add('opened');
+      setTimeout(function(){
+        envelopeOverlay.classList.add('fade-out');
+      }, 900);
+      setTimeout(function(){
+        envelopeOverlay.style.display = 'none';
+      }, 1600);
+    });
+  }
 </script>
 
 </body>
