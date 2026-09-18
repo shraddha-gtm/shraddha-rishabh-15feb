@@ -210,6 +210,11 @@
     color:var(--maroon-deep); background:var(--gold-pale);
   }
   .info-card h3{ font-size:1.25rem; color:var(--maroon-deep); margin-bottom:8px; }
+  .info-card .icon-title{
+    display:flex; align-items:center; gap:14px; margin-bottom:14px;
+  }
+  .info-card .icon-title .icon{ margin:0; flex-shrink:0; }
+  .info-card .icon-title h3{ margin-bottom:0; }
   .info-card p{ font-size:.88rem; color:var(--ink); margin:0; opacity:.85; }
   .info-card p + p{ margin-top:8px; }
   .info-card ul{ margin:0; padding:0; list-style:none; }
@@ -571,24 +576,28 @@
     <div class="info-grid">
 
       <div class="info-card">
-        <div class="icon">
-          <svg width="20" height="20" viewBox="0 0 40 40" aria-hidden="true">
-            <path d="M20 4c7 0 11 5.5 11 12 0 9-11 20-11 20S9 25 9 16C9 9.5 13 4 20 4Z" fill="none" stroke="#4F1219" stroke-width="1.8"/>
-            <circle cx="20" cy="16" r="4" fill="none" stroke="#4F1219" stroke-width="1.6"/>
-          </svg>
+        <div class="icon-title">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 40 40" aria-hidden="true">
+              <path d="M20 4c7 0 11 5.5 11 12 0 9-11 20-11 20S9 25 9 16C9 9.5 13 4 20 4Z" fill="none" stroke="#4F1219" stroke-width="1.8"/>
+              <circle cx="20" cy="16" r="4" fill="none" stroke="#4F1219" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <h3>Venue</h3>
         </div>
-        <h3>Venue</h3>
         <p>All of the celebrations &mdash; Haldi, Sangeet, Baraat, and the wedding itself &mdash; take place at <strong>Saraca Hotel</strong>, Mall Avenue, Lucknow.</p>
       </div>
 
       <div class="info-card">
-        <div class="icon">
-          <svg width="20" height="20" viewBox="0 0 40 40" aria-hidden="true">
-            <path d="M4 22l32-9-9 9 9 9-32-9Z" fill="none" stroke="#4F1219" stroke-width="1.6" stroke-linejoin="round"/>
-            <path d="M18 22l0 10-4-4" fill="none" stroke="#4F1219" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <div class="icon-title">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 40 40" aria-hidden="true">
+              <path d="M4 22l32-9-9 9 9 9-32-9Z" fill="none" stroke="#4F1219" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M18 22l0 10-4-4" fill="none" stroke="#4F1219" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Getting there</h3>
         </div>
-        <h3>Getting there</h3>
         <ul>
           <li><strong>By air (preferred):</strong> some airlines may offer direct international flights into Lucknow (LKO). If your route has a layover in Delhi (DEL) instead, simply take a short domestic flight onward to Lucknow: it's about 1 hour, with 10+ flights daily. The airport is roughly 30&ndash;40 minutes from the hotel.</li>
           <li><strong>By train from Delhi:</strong> the Vande Bharat Express covers Delhi&ndash;Lucknow in about 6.5 hours.</li>
@@ -597,25 +606,29 @@
       </div>
 
       <div class="info-card">
-        <div class="icon">
-          <svg width="20" height="20" viewBox="0 0 40 40" aria-hidden="true">
-            <rect x="6" y="18" width="28" height="12" fill="none" stroke="#4F1219" stroke-width="1.6"/>
-            <path d="M9 18v-4a3 3 0 0 1 3-3h16a3 3 0 0 1 3 3v4" fill="none" stroke="#4F1219" stroke-width="1.6"/>
-            <circle cx="12" cy="24" r="1.6" fill="#4F1219"/>
-          </svg>
+        <div class="icon-title">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 40 40" aria-hidden="true">
+              <rect x="6" y="18" width="28" height="12" fill="none" stroke="#4F1219" stroke-width="1.6"/>
+              <path d="M9 18v-4a3 3 0 0 1 3-3h16a3 3 0 0 1 3 3v4" fill="none" stroke="#4F1219" stroke-width="1.6"/>
+              <circle cx="12" cy="24" r="1.6" fill="#4F1219"/>
+            </svg>
+          </div>
+          <h3>Accommodation</h3>
         </div>
-        <h3>Accommodation</h3>
         <p>Saraca Hotel is a beautiful but small property (just a handful of rooms!), so we've kept these for family. Everyone else, we kindly ask you to book your own stay, and Lucknow has some wonderful options just a short drive away: <strong>Taj Palace</strong>, <strong>Taj Mahal Lucknow</strong>, <strong>Hyatt</strong>, <strong>Hilton</strong>, <strong>Renaissance Lucknow</strong>, and <strong>Fairfield by Marriott Lucknow</strong>. If you'd like more space or a longer stay, Airbnbs are plentiful around Hazratganj and Gomti Nagar.</p>
         <p>Uber works well all across Lucknow and is very reasonably priced, so getting between your hotel and the venue is easy.</p>
       </div>
 
       <div class="info-card">
-        <div class="icon">
-          <svg width="20" height="20" viewBox="0 0 40 40" aria-hidden="true">
-            <path d="M20 6c4 4 6 8 6 12a6 6 0 1 1-12 0c0-4 2-8 6-12Z" fill="none" stroke="#4F1219" stroke-width="1.8"/>
-          </svg>
+        <div class="icon-title">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 40 40" aria-hidden="true">
+              <path d="M20 6c4 4 6 8 6 12a6 6 0 1 1-12 0c0-4 2-8 6-12Z" fill="none" stroke="#4F1219" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <h3>Food &amp; drink</h3>
         </div>
-        <h3>Food &amp; drink</h3>
         <p>In keeping with family tradition, this will be a <strong>vegetarian, alcohol-free</strong> celebration. Thank you for celebrating with us in that spirit.</p>
         <p>That said, if a mysterious flask happens to appear under a table at some point during the Sangeet, we make no promises about what's in it&hellip; and we definitely didn't see anything.</p>
       </div>
