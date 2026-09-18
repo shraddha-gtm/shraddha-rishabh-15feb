@@ -156,21 +156,30 @@
   }
 
   /* ---------- EVENTS ---------- */
-  .events{ background:var(--teal); color:var(--gold-pale); padding:88px 0; position:relative; }
+  .events{ background:var(--maroon-deep); color:var(--gold-pale); padding:88px 0; position:relative; }
   .events .wrap{ text-align:center; }
   .events .label{ color:var(--gold); display:block; margin-bottom:10px; }
   .events h2{ color:var(--cream); font-size:clamp(1.9rem,4vw,2.5rem); margin-bottom:48px; }
+
+  .day-group{ padding:32px 20px 36px; margin-bottom:24px; }
+  .day-group:last-of-type{ margin-bottom:0; }
+  .day-group.day-15{ background:#1B6E52; }
+  .day-group.day-16{ background:#0F4D3E; }
+  .day-group .day-heading{
+    font-family:'Cormorant Garamond'; font-weight:700; font-size:1.3rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:24px;
+  }
   .event-grid{
     display:grid; gap:0; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
     max-width:920px; margin:0 auto;
   }
   .event{
-    padding:26px 20px; border-left:1px solid rgba(239,223,169,.3);
+    padding:6px 20px; border-left:1px solid rgba(239,223,169,.3);
   }
   .event:first-child{ border-left:none; }
   @media(max-width:700px){
-    .event{ border-left:none; border-top:1px solid rgba(239,223,169,.3); }
-    .event:first-child{ border-top:none; }
+    .event{ border-left:none; border-top:1px solid rgba(239,223,169,.3); padding-top:20px; }
+    .event:first-child{ border-top:none; padding-top:6px; }
   }
   .event .ev-date{ font-family:'Cormorant Garamond'; font-weight:600; font-size:1rem; color:var(--gold); letter-spacing:.1em; margin-bottom:2px; }
   .event .ev-time{ font-family:'Poppins'; font-weight:500; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-pale); opacity:.8; margin-bottom:8px; }
@@ -497,9 +506,9 @@
   <div class="wrap">
     <span class="label">Our story</span>
     <h2>The Probability of Us</h2>
-    <p>Lucknow got there first. From 2004 to 2010, Shraddha was at La Martiniere Girls' College; a few streets and a couple of years over, Rishabh was at Army Public School between 2008 and 2010. Neither knew the other existed.</p>
-    <p>They finally met in 2015, though it took an entire pandemic for &ldquo;just friends&rdquo; to quietly upgrade itself. How that happened is still classified.</p>
-    <p>Ten years later, Rishabh decided he wasn't leaving anything to chance: in 2025, he solved an actual equation to prove that marrying him was an excellent idea. She said yes anyway: to him, or to the math, we may never know. Either way, Lucknow's long wait since 2004 finally paid off.</p>
+    <p>Turns out, this story started in Lucknow, years before either of them knew it. Shraddha went to school at La Martiniere Girls' College from 2004 to 2010, before moving back to Kathmandu. Rishabh took the reverse route: moving from Kathmandu to Lucknow a little later, where he attended Army Public School from 2011 to 2013. Their paths never crossed, different years, different chapters, same two cities quietly keeping their story on file.</p>
+    <p>They finally met in 2015, hundreds of kilometres from where it all started, though it took an entire pandemic for &ldquo;just friends&rdquo; to quietly upgrade itself. How that happened is still classified.</p>
+    <p>Ten years later, Rishabh decided he wasn't leaving anything to chance: in 2025, he solved an actual equation to convince Shraddha that marrying him was an excellent idea. She said yes anyway, to him, or to the math, we may never know. And somehow, it felt only right that a story which began, unknowingly, in Lucknow, would end up bringing everyone back there to celebrate.</p>
 
     <div class="equation-block">
       <span class="eq-label">The equation, for the record</span>
@@ -513,36 +522,42 @@
   <div class="wrap">
     <span class="label">The celebrations</span>
     <h2>A few days of festivities</h2>
-    <div class="event-grid">
-      <div class="event">
-        <p class="ev-date">February 15</p>
-        <p class="ev-time">1:00 PM</p>
-        <h3>Haldi &amp; Mehendi</h3>
-        <p>Henna, turmeric, and the first of many family dance-offs.</p>
-        <p class="ev-wear"><strong>Wear:</strong> Yellows, greens, or any bright colour you like, in fabrics you don't mind staining: turmeric doesn't wash out easily!</p>
-      </div>
-      <div class="event">
-        <p class="ev-date">February 15</p>
-        <p class="ev-time">7:30 PM</p>
-        <h3>Sangeet</h3>
-        <p>An evening of performances, rehearsed and very much not.</p>
-        <p class="ev-wear"><strong>Wear:</strong> Indo-western &amp; party wear: sequins, shimmer, and anything easy to dance in.</p>
-      </div>
-      <div class="event">
-        <p class="ev-date">February 16</p>
-        <p class="ev-time">12:00 PM</p>
-        <h3>Janti / Baraat</h3>
-        <p>The groom's procession arrives in style, drums and all.</p>
-        <p class="ev-wear"><strong>Wear:</strong> Vibrant traditional wear &amp; comfortable footwear: you'll be dancing in the procession!</p>
-      </div>
-      <div class="event">
-        <p class="ev-date">February 16</p>
-        <p class="ev-time">4:00 PM onwards</p>
-        <h3>Wedding Ceremony</h3>
-        <p>Traditional rites under the mandap, followed by blessings.</p>
-        <p class="ev-wear"><strong>Wear:</strong> Formal traditional attire in rich jewel tones: sarees, lehengas, sherwanis &amp; suits. Please avoid white &amp; black.</p>
+    <div class="day-group day-15">
+      <p class="day-heading">February 15</p>
+      <div class="event-grid">
+        <div class="event">
+          <p class="ev-time">1:00 PM</p>
+          <h3>Haldi &amp; Mehendi</h3>
+          <p>Henna, turmeric, and the first of many family dance-offs.</p>
+          <p class="ev-wear"><strong>Wear:</strong> Yellows, greens, or any bright colour you like, in fabrics you don't mind staining: turmeric doesn't wash out easily!</p>
+        </div>
+        <div class="event">
+          <p class="ev-time">7:30 PM</p>
+          <h3>Sangeet</h3>
+          <p>An evening of performances, rehearsed and very much not.</p>
+          <p class="ev-wear"><strong>Wear:</strong> Indo-western &amp; party wear: sequins, shimmer, and anything easy to dance in.</p>
+        </div>
       </div>
     </div>
+
+    <div class="day-group day-16">
+      <p class="day-heading">February 16</p>
+      <div class="event-grid">
+        <div class="event">
+          <p class="ev-time">12:00 PM</p>
+          <h3>Janti / Baraat</h3>
+          <p>The groom's procession arrives in style, drums and all.</p>
+          <p class="ev-wear"><strong>Wear:</strong> Vibrant traditional wear &amp; comfortable footwear: you'll be dancing in the procession!</p>
+        </div>
+        <div class="event">
+          <p class="ev-time">4:00 PM onwards</p>
+          <h3>Wedding Ceremony</h3>
+          <p>Traditional rites under the mandap, followed by blessings.</p>
+          <p class="ev-wear"><strong>Wear:</strong> Formal traditional attire in rich jewel tones: sarees, lehengas, sherwanis &amp; suits. Please avoid white &amp; black.</p>
+        </div>
+      </div>
+    </div>
+
     <p class="note">*You won't go hungry: food will be served at each of these celebrations.</p>
   </div>
 </section>
