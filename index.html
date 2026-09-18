@@ -156,12 +156,12 @@
   }
 
   /* ---------- EVENTS ---------- */
-  .events{ background:var(--maroon-deep); color:var(--gold-pale); padding:88px 0; position:relative; }
+  .events{ color:var(--gold-pale); position:relative; }
   .events .wrap{ text-align:center; }
   .events .label{ color:var(--gold); display:block; margin-bottom:10px; }
   .events h2{ color:var(--cream); font-size:clamp(1.9rem,4vw,2.5rem); margin-bottom:48px; }
 
-  .day-group{ padding:32px 20px 36px; margin-bottom:24px; }
+  .day-group{ padding:64px 28px; }
   .day-group:last-of-type{ margin-bottom:0; }
   .day-group.day-15{ background:#1B6E52; }
   .day-group.day-16{ background:#0F4D3E; }
@@ -519,10 +519,10 @@
 </section>
 
 <section class="events" id="events">
-  <div class="wrap">
-    <span class="label">The celebrations</span>
-    <h2>A few days of festivities</h2>
-    <div class="day-group day-15">
+  <div class="day-group day-15">
+    <div class="wrap">
+      <span class="label">The celebrations</span>
+      <h2>A few days of festivities</h2>
       <p class="day-heading">February 15</p>
       <div class="event-grid">
         <div class="event">
@@ -539,8 +539,10 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="day-group day-16">
+  <div class="day-group day-16">
+    <div class="wrap">
       <p class="day-heading">February 16</p>
       <div class="event-grid">
         <div class="event">
@@ -556,9 +558,8 @@
           <p class="ev-wear"><strong>Wear:</strong> Formal traditional attire in rich jewel tones: sarees, lehengas, sherwanis &amp; suits. Please avoid white &amp; black.</p>
         </div>
       </div>
+      <p class="note">*You won't go hungry: food will be served at each of these celebrations.</p>
     </div>
-
-    <p class="note">*You won't go hungry: food will be served at each of these celebrations.</p>
   </div>
 </section>
 
