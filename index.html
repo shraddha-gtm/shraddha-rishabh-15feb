@@ -371,7 +371,43 @@
   .env-seal svg{ width:60%; height:60%; opacity:.85; filter:drop-shadow(0 1px 0 rgba(0,0,0,.3)); }
   .env-hint{
     margin-top:26px; color:var(--gold-pale); font-family:'Cormorant Garamond'; font-style:italic; font-size:1.05rem;
-    opacity:.9;
+    opacity:.9; cursor:pointer;
+  }
+  .env-password-form{
+    display:none;
+    margin-top:22px;
+    flex-direction:column; align-items:center;
+    max-width:280px; padding:0 20px;
+  }
+  .env-password-form.show{ display:flex; }
+  .env-password-label{
+    color:var(--gold-pale); font-family:'Cormorant Garamond'; font-style:italic; font-size:.98rem;
+    margin-bottom:12px; text-align:center; opacity:.9;
+  }
+  .env-password-form input{
+    width:100%; text-align:center; font-family:'Poppins'; font-size:.95rem;
+    padding:10px 14px; border:1.5px solid var(--gold); border-radius:999px;
+    background:rgba(247,238,218,.12); color:var(--gold-pale);
+    margin-bottom:12px; letter-spacing:.05em;
+  }
+  .env-password-form input::placeholder{ color:rgba(239,223,169,.55); }
+  .env-password-form input:focus{ outline:none; border-color:var(--gold-pale); background:rgba(247,238,218,.2); }
+  .env-password-btn{
+    font-family:'Poppins'; letter-spacing:.08em; font-size:.78rem; font-weight:500; text-transform:uppercase;
+    padding:10px 26px; border:1.5px solid var(--gold); border-radius:999px;
+    background:var(--gold); color:var(--maroon-deep); cursor:pointer;
+  }
+  .env-password-btn:hover{ background:var(--gold-pale); }
+  .env-error{
+    color:#F2A7A7; font-size:.78rem; margin-top:10px; min-height:1.1em; text-align:center;
+  }
+  .env-password-form.shake{ animation:env-shake .4s ease; }
+  @keyframes env-shake{
+    0%,100%{ transform:translateX(0); }
+    20%{ transform:translateX(-8px); }
+    40%{ transform:translateX(8px); }
+    60%{ transform:translateX(-6px); }
+    80%{ transform:translateX(6px); }
   }
   #envelopeOverlay.opened .env-flap{ transform:rotateX(180deg); }
   #envelopeOverlay.opened .env-seal{ opacity:0; }
@@ -450,7 +486,13 @@
       </svg>
     </div>
   </div>
-  <p class="env-hint">Tap to open your invitation</p>
+  <p class="env-hint" id="envHint">Tap the seal to begin</p>
+  <form id="envPasswordForm" class="env-password-form">
+    <p class="env-password-label">Whisper the secret word to break the seal</p>
+    <input type="password" id="envPasswordInput" placeholder="Secret word" autocomplete="off">
+    <button type="submit" class="env-password-btn">Break the seal</button>
+    <p class="env-error" id="envError">&nbsp;</p>
+  </form>
 </div>
 
 
@@ -970,17 +1012,51 @@
 </script>
 
 <script>
+  var SITE_PASSWORD = "goodvibes";
   var envelopeOverlay = document.getElementById('envelopeOverlay');
+  var envHint = document.getElementById('envHint');
+  var envForm = document.getElementById('envPasswordForm');
+  var envInput = document.getElementById('envPasswordInput');
+  var envError = document.getElementById('envError');
+  var envelopeEl = document.querySelector('#envelopeOverlay .envelope');
+
+  function revealPasswordForm(){
+    if (envForm.classList.contains('show')) { envInput.focus(); return; }
+    envHint.style.display = 'none';
+    envForm.classList.add('show');
+    envInput.focus();
+  }
+
+  function openEnvelope(){
+    envelopeOverlay.classList.add('opened');
+    setTimeout(function(){
+      envelopeOverlay.classList.add('fade-out');
+    }, 900);
+    setTimeout(function(){
+      envelopeOverlay.style.display = 'none';
+    }, 1600);
+  }
+
   if (envelopeOverlay) {
-    envelopeOverlay.addEventListener('click', function handleOpen(){
-      if (envelopeOverlay.classList.contains('opened')) return;
-      envelopeOverlay.classList.add('opened');
-      setTimeout(function(){
-        envelopeOverlay.classList.add('fade-out');
-      }, 900);
-      setTimeout(function(){
-        envelopeOverlay.style.display = 'none';
-      }, 1600);
+    if (envelopeEl) {
+      envelopeEl.addEventListener('click', revealPasswordForm);
+    }
+    envHint.addEventListener('click', revealPasswordForm);
+
+    envForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var entered = envInput.value.trim().toLowerCase();
+      if (entered === SITE_PASSWORD) {
+        envError.textContent = '\u00a0';
+        openEnvelope();
+      } else {
+        envError.textContent = "That's not quite the word, try again.";
+        envForm.classList.remove('shake');
+        void envForm.offsetWidth;
+        envForm.classList.add('shake');
+        envInput.value = '';
+        envInput.focus();
+      }
     });
   }
 </script>
