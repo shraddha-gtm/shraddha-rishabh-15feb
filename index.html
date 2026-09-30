@@ -121,10 +121,10 @@
     font-family:'Poppins'; font-size:.5rem; text-transform:uppercase; letter-spacing:.06em; color:var(--maroon-deep); margin-top:2px; text-align:center; line-height:1.1; display:block;
   }
   @media (max-width:480px){
-    .countdown-timer{ gap:5px; }
-    .countdown-unit{ min-width:46px; padding:6px 6px 5px; }
-    .countdown-unit .num{ font-size:1.15rem; }
-    .countdown-unit .lbl{ font-size:.42rem; }
+    .countdown-timer{ gap:4px; }
+    .countdown-unit{ min-width:38px; padding:6px 4px 5px; }
+    .countdown-unit .num{ font-size:1rem; }
+    .countdown-unit .lbl{ font-size:.38rem; }
   }
   .invite-hero .eyebrow{ color:var(--gold-pale); font-family:'Cormorant Garamond'; font-style:italic; font-size:1rem; margin-top:22px; opacity:.85; }
 
@@ -529,6 +529,10 @@
         <span class="num" id="cdMinutes">--</span>
         <span class="lbl">Mins</span>
       </div>
+      <div class="countdown-unit">
+        <span class="num" id="cdSeconds">--</span>
+        <span class="lbl">Secs</span>
+      </div>
     </div>
   </div>
   <p class="eyebrow">Scroll down for the celebration details &amp; <a href="#rsvp" style="color:inherit; text-decoration:underline;">RSVP</a></p>
@@ -847,8 +851,9 @@
 <section class="rsvp" id="rsvp">
   <div class="wrap">
     <span class="label">Kindly respond</span>
-    <h2>RSVP by <strong>30 October</strong></h2>
+    <h2>RSVP</h2>
     <p style="font-size:.9rem; opacity:.85; margin-bottom:14px;">We are keeping our gathering very intimate and appreciate your understanding.</p>
+    <p style="font-size:.9rem; opacity:.85; margin-bottom:14px;">Questions? Reach out at <a href="mailto:contact.shraddhagautam@gmail.com" style="color:inherit;">contact.shraddhagautam@gmail.com</a></p>
 
     <form class="rsvp-card" id="rsvpForm" novalidate>
       <div class="field">
@@ -923,6 +928,7 @@
     var daysEl = document.getElementById('cdDays');
     var hoursEl = document.getElementById('cdHours');
     var minsEl = document.getElementById('cdMinutes');
+    var secsEl = document.getElementById('cdSeconds');
     var timerEl = document.getElementById('countdownTimer');
 
     function updateCountdown(){
@@ -936,18 +942,20 @@
         return;
       }
 
-      var totalMinutes = Math.floor(diff / 60000);
-      var days = Math.floor(totalMinutes / (60 * 24));
-      var hours = Math.floor((totalMinutes % (60 * 24)) / 60);
-      var minutes = totalMinutes % 60;
+      var totalSeconds = Math.floor(diff / 1000);
+      var days = Math.floor(totalSeconds / 86400);
+      var hours = Math.floor((totalSeconds % 86400) / 3600);
+      var minutes = Math.floor((totalSeconds % 3600) / 60);
+      var seconds = totalSeconds % 60;
 
       if (daysEl) daysEl.textContent = days;
       if (hoursEl) hoursEl.textContent = hours;
       if (minsEl) minsEl.textContent = minutes;
+      if (secsEl) secsEl.textContent = seconds;
     }
 
     updateCountdown();
-    setInterval(updateCountdown, 30000);
+    setInterval(updateCountdown, 1000);
   })();
 
   document.querySelectorAll('.accordion-header').forEach((header) => {
@@ -980,10 +988,10 @@
     const attending = form.querySelector('input[name="attending"]:checked');
     const isYes = attending && attending.value === 'yes';
 
-    confirmHeadline.textContent = isYes ? `We can't wait to celebrate with you, ${name}!` : `We'll miss you, ${name}.`;
+    confirmHeadline.textContent = isYes ? `We can't wait to celebrate with you, ${name}!` : `You'll be missed!`;
     confirmBody.textContent = isYes
       ? "Thank you for your RSVP — we've noted your preferences."
-      : "Thank you for letting us know. We'll be sending our love your way.";
+      : "Thank you for letting us know. We'll be thinking of you on the day.";
 
     if (email) {
       const templateParams = {
